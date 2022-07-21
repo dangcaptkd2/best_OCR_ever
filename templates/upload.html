@@ -1,0 +1,58 @@
+<!doctype html>
+<title>Best OCR ever</title>
+<style>
+	* {
+	  box-sizing: border-box;
+	}
+	
+	.column {
+	  float: left;
+	  width: 33.33%;
+	  padding: 5px;
+	}
+	/* Clearfix (clear floats) */
+	.row::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+</style>
+<h2>Select a file to upload</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+<form method="post" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+
+<div class="row">
+	{% if filename %}
+		<div class="column">
+			<img src="{{ url_for('static', filename='/uploads/' + filename) }}">
+		</div>
+	{% endif %}
+	{% if result_text %}
+		<div class="column">
+			<!-- <text>hellooooooooooooooooo</text> -->
+			<img src="{{ url_for('static', filename='/uploads/' + filename) }}">
+		</div>
+	{% endif %}
+</div>
+
+
+
